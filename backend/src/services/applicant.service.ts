@@ -16,17 +16,23 @@ export class ApplicantService {
     data: CreateApplicantRequest,
   ): Promise<ApplicantResponse> {
     try {
+      const applicantData: any = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        education: data.education as any,
+        workExperience: data.workExperience as any,
+      };
+
+      // Solo incluir recruiterId si se proporciona
+      if (data.recruiterId !== undefined) {
+        applicantData.recruiterId = data.recruiterId;
+      }
+
       const applicant = await prisma.applicant.create({
-        data: {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          phone: data.phone,
-          address: data.address,
-          education: data.education as any,
-          workExperience: data.workExperience as any,
-          recruiterId: data.recruiterId,
-        },
+        data: applicantData,
         include: {
           recruiter: {
             select: {
@@ -50,7 +56,7 @@ export class ApplicantService {
         cvUrl: applicant.cvUrl || undefined,
         createdAt: applicant.createdAt,
         updatedAt: applicant.updatedAt,
-        recruiterId: applicant.recruiterId,
+        recruiterId: applicant.recruiterId || undefined,
       };
     } catch (error) {
       throw new Error(
@@ -91,7 +97,7 @@ export class ApplicantService {
         cvUrl: applicant.cvUrl || undefined,
         createdAt: applicant.createdAt,
         updatedAt: applicant.updatedAt,
-        recruiterId: applicant.recruiterId,
+        recruiterId: applicant.recruiterId || undefined,
       }));
     } catch (error) {
       throw new Error(
@@ -134,7 +140,7 @@ export class ApplicantService {
         cvUrl: applicant.cvUrl || undefined,
         createdAt: applicant.createdAt,
         updatedAt: applicant.updatedAt,
-        recruiterId: applicant.recruiterId,
+        recruiterId: applicant.recruiterId || undefined,
       };
     } catch (error) {
       throw new Error(

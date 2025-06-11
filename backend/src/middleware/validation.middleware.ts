@@ -66,9 +66,10 @@ export const validateCreateApplicant = [
   ),
 
   body('recruiterId')
+    .optional()
     .isInt({ min: 1 })
     .withMessage(
-      'El ID del reclutador es obligatorio y debe ser un número válido',
+      'El ID del reclutador debe ser un número válido si se proporciona',
     ),
 ];
 
@@ -92,7 +93,7 @@ export const handleValidationErrors = (
       success: false,
       message: 'Errores de validación',
       errors: errors.array().map((error) => ({
-        field: error.path,
+        field: (error as any).path || (error as any).param || 'unknown',
         message: error.msg,
       })),
     });

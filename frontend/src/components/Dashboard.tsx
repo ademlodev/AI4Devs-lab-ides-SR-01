@@ -6,7 +6,6 @@ import {
   Box,
   Card,
   CardContent,
-  Grid,
   Chip,
   Alert,
   CircularProgress,
@@ -118,8 +117,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onAddApplicant }) => {
       )}
 
       {/* Estadísticas */}
-      <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={4}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, mb: 4 }}>
+        <Box sx={{ flex: '1 1 300px', minWidth: 0 }}>
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center">
@@ -135,8 +134,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onAddApplicant }) => {
               </Box>
             </CardContent>
           </Card>
-        </Grid>
-        <Grid item xs={12} sm={4}>
+        </Box>
+        <Box sx={{ flex: '1 1 300px', minWidth: 0 }}>
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center">
@@ -152,8 +151,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onAddApplicant }) => {
               </Box>
             </CardContent>
           </Card>
-        </Grid>
-        <Grid item xs={12} sm={4}>
+        </Box>
+        <Box sx={{ flex: '1 1 300px', minWidth: 0 }}>
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center">
@@ -176,8 +175,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onAddApplicant }) => {
               </Box>
             </CardContent>
           </Card>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
 
       {/* Candidatos recientes */}
       <Paper sx={{ p: 3 }}>
@@ -199,9 +198,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ onAddApplicant }) => {
             </Button>
           </Box>
         ) : (
-          <Grid container spacing={2}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
             {getRecentApplicants().map((applicant) => (
-              <Grid item xs={12} sm={6} md={4} key={applicant.id}>
+              <Box key={applicant.id} sx={{ flex: '1 1 300px', minWidth: 0 }}>
                 <Card variant="outlined">
                   <CardContent>
                     <Typography variant="h6" component="div">
@@ -225,9 +224,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ onAddApplicant }) => {
                     </Box>
                   </CardContent>
                 </Card>
-              </Grid>
+              </Box>
             ))}
-          </Grid>
+          </Box>
         )}
       </Paper>
     </Container>

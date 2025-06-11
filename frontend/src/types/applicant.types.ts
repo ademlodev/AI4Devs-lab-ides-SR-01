@@ -24,7 +24,7 @@ export interface CreateApplicantRequest {
   address?: string;
   education: Education[];
   workExperience: WorkExperience[];
-  recruiterId: number;
+  recruiterId?: number;
 }
 
 export interface ApplicantResponse {
@@ -39,7 +39,7 @@ export interface ApplicantResponse {
   cvUrl?: string;
   createdAt: Date;
   updatedAt: Date;
-  recruiterId: number;
+  recruiterId?: number;
 }
 
 export interface ApiResponse<T> {

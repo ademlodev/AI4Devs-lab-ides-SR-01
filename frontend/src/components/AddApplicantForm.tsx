@@ -12,13 +12,6 @@ import {
   Alert,
   CircularProgress,
   IconButton,
-  Divider,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Chip,
-  OutlinedInput,
 } from '@mui/material';
 import {
   ArrowBack as ArrowBackIcon,
@@ -54,7 +47,6 @@ export const AddApplicantForm: React.FC<AddApplicantFormProps> = ({ onBack, onSu
     address: '',
     education: [],
     workExperience: [],
-    recruiterId: 1, // Por defecto
   });
 
   // Validaciones
